@@ -133,15 +133,6 @@ main {
     color: var(--neutral-blue);
 }
 
-.buttons__time:hover,
-.buttons__time:focus {
-    color: var(--white);
-}
-
-.active {
-    color: var(--white);
-}
-
 .icon {
     position: absolute;
     z-index: 1;
@@ -261,6 +252,15 @@ footer {
 }
 .attribution a {
     color: hsl(228, 45%, 44%);
+}
+
+.active {
+    color: var(--white);
+}
+
+.buttons__time:hover,
+.buttons__time:focus {
+    color: var(--white);
 }
 
 @media screen and (min-width: 640px) {
