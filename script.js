@@ -8,18 +8,18 @@ const populateDashboard = (data, time) => {
         currentStats[i].textContent = `${current}hrs`;
         previousStats[i].textContent = `${previous}hrs`;
     }
-}
+};
 
 let activeButton = document.querySelector(".active");
 
-buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-        activeButton.classList.remove("active");
-        activeButton = event.target;
-        event.target.classList.add("active");
-        const time = event.target.dataset.time;
+const handleClick = (event) => {
+    activeButton.classList.remove("active");
+    activeButton = event.target;
+    event.target.classList.add("active");
+    const time = event.target.dataset.time;
 
-        fetch("/data.json").then((response) => {
+    fetch("/data.json")
+        .then((response) => {
             if (!response.ok) {
                 throw new Error("Failed to fetch resource.");
             }
@@ -31,33 +31,8 @@ buttons.forEach((button) => {
         .catch((error) => {
             console.log(error);
         });
-    });
+};
+
+buttons.forEach((button) => {
+    button.addEventListener("click", handleClick);
 });
-
-
-const tiltCards = document.querySelectorAll(".tilt-card");
-
-tiltCards.forEach((card) => {
-  card.addEventListener("mousemove", handleMouseMove);
-  card.addEventListener("mouseout", handleMouseOut);
-});
-
-function handleMouseMove(event) {
-  const card = event.currentTarget;
-  const cardRect = card.getBoundingClientRect();
-  const cardCenterX = cardRect.left + cardRect.width / 2;
-  const cardCenterY = cardRect.top + cardRect.height / 2;
-
-  const mouseX = event.clientX;
-  const mouseY = event.clientY;
-
-  const rotateX = (mouseY - cardCenterY) / 20;
-  const rotateY = (mouseX - cardCenterX) / 20;
-
-  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-}
-
-function handleMouseOut(event) {
-  const card = event.currentTarget;
-  card.style.transform = "";
-}

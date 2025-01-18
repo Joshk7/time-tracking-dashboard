@@ -249,6 +249,11 @@ main {
     z-index: 2;
 }
 
+.content:hover,
+.content:focus {
+    background: #33397A;
+}
+
 .label {
     display: flex;
     align-items: center;
@@ -302,12 +307,13 @@ footer {
     color: var(--white);
 }
 
-.tilt-card {
-    transition: transform 0.3s;
+.ellipses {
+    color: var(--light-blue);
 }
 
-.tilt-card:hover {
-    transform: perspective(1000px) rotateX(-5deg) rotateY(5deg) scale(1.05);
+.ellipses:hover,
+.ellipses:focus {
+    color: var(--white);
 }
 
 @media screen and (min-width: 640px) {
