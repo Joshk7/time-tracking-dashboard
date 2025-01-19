@@ -10,14 +10,7 @@ const populateDashboard = (data, time) => {
     }
 };
 
-let activeButton = document.querySelector(".active");
-
-const handleClick = (event) => {
-    activeButton.classList.remove("active");
-    activeButton = event.target;
-    event.target.classList.add("active");
-    const time = event.target.dataset.time;
-
+const fetchData = (time) => {
     fetch("/data.json")
         .then((response) => {
             if (!response.ok) {
@@ -31,6 +24,16 @@ const handleClick = (event) => {
         .catch((error) => {
             console.log(error);
         });
+};
+
+let activeButton = document.querySelector(".active");
+
+const handleClick = (event) => {
+    activeButton.classList.remove("active");
+    activeButton = event.target;
+    event.target.classList.add("active");
+    const time = event.target.dataset.time;
+    fetchData(time);
 };
 
 buttons.forEach((button) => {
